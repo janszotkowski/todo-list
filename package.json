@@ -5,7 +5,13 @@
   "scripts": {
     "dev": "rsbuild dev --open",
     "build": "rsbuild build",
-    "preview": "rsbuild preview"
+    "preview": "rsbuild preview",
+    "lint": "eslint --config .eslintrc.mjs 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint-fix": "eslint --config .eslintrc.mjs 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -14,8 +20,19 @@
   "devDependencies": {
     "@rsbuild/core": "^1.0.1",
     "@rsbuild/plugin-react": "^1.0.1",
+    "@stylistic/eslint-plugin": "^2.8.0",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.6.0",
+    "@typescript-eslint/parser": "^8.6.0",
+    "eslint": "^9.10.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-react": "^7.36.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "globals": "^15.9.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "typescript": "^5.5.2"
   }
 }
