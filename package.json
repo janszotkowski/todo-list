@@ -6,8 +6,8 @@
     "dev": "rsbuild dev --open",
     "build": "rsbuild build",
     "preview": "rsbuild preview",
-    "lint": "eslint --config .eslintrc.mjs 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint-fix": "eslint --config .eslintrc.mjs 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "lint": "eslint --config eslint.config.mjs 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint-fix": "eslint --config eslint.config.mjs 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "prepare": "husky install"
   },
   "lint-staged": {
