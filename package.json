@@ -1,5 +1,6 @@
 {
-  "name": "rsbuild-react-ts",
+  "name": "todo-list",
+  "author": "Jan Szotkowski",
   "private": true,
   "version": "1.0.0",
   "scripts": {
