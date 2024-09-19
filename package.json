@@ -24,6 +24,7 @@
   "devDependencies": {
     "@rsbuild/core": "^1.0.1",
     "@rsbuild/plugin-react": "^1.0.1",
+    "@rsbuild/plugin-sass": "^1.0.1",
     "@stylistic/eslint-plugin": "^2.8.0",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
