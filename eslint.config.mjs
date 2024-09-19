@@ -27,7 +27,7 @@ export default {
         globals: {
             ...globals.browser,
             ...globals.node,
-            myCustomGlobal: "readonly"
+            myCustomGlobal: 'readonly'
         }
     },
 
@@ -41,33 +41,33 @@ export default {
     },
 
     rules: {
-        "no-duplicate-imports": "error",
+        'no-duplicate-imports': 'error',
 
         // Pravidla pro TypeScript
         '@typescript-eslint/explicit-function-return-type': 'error',
         '@typescript-eslint/no-unused-vars': ['error', {argsIgnorePattern: '^_'}],
         '@typescript-eslint/no-explicit-any': 'off',
-        "@typescript-eslint/explicit-member-accessibility": [
-            "error",
+        '@typescript-eslint/explicit-member-accessibility': [
+            'error',
             {
-                "accessibility": "explicit",
-                "overrides": {
-                    "accessors": "off",
-                    "constructors": "explicit",
-                    "methods": "explicit",
-                    "properties": "explicit",
-                    "parameterProperties": "explicit"
+                'accessibility': 'explicit',
+                'overrides': {
+                    'accessors': 'off',
+                    'constructors': 'explicit',
+                    'methods': 'explicit',
+                    'properties': 'explicit',
+                    'parameterProperties': 'explicit'
                 }
             }
         ],
-        "@typescript-eslint/array-type": "error",
-        "@typescript-eslint/consistent-indexed-object-style": "error",
+        '@typescript-eslint/array-type': 'error',
+        '@typescript-eslint/consistent-indexed-object-style': 'error',
 
         // Pravidla pro React
         'react/react-in-jsx-scope': 'off',
         'react/jsx-uses-react': 'off',
         'react/jsx-uses-vars': 'warn',
-        "react/jsx-boolean-value": "error",
+        'react/jsx-boolean-value': 'error',
 
         // Pravidla pro React Hooks
         'react-hooks/rules-of-hooks': 'error',
@@ -80,32 +80,32 @@ export default {
         '@stylistic/no-trailing-spaces': 'error',
         '@stylistic/brace-style': ['error', '1tbs', {allowSingleLine: true}],
         '@stylistic/comma-dangle': ['error', 'always-multiline'],
-        "@stylistic/jsx-props-no-multi-spaces": 'error',
-        "@stylistic/space-before-blocks": "error",
-        "@stylistic/jsx-curly-brace-presence": [
-            "error",
+        '@stylistic/jsx-props-no-multi-spaces': 'error',
+        '@stylistic/space-before-blocks': 'error',
+        '@stylistic/jsx-curly-brace-presence': [
+            'error',
             {
-                "props": "always",
-                "children": "never"
+                'props': 'always',
+                'children': 'never'
             }
         ],
-        "@stylistic/member-delimiter-style": [
-            "error",
+        '@stylistic/member-delimiter-style': [
+            'error',
             {
-                "multiline": {
-                    "delimiter": "semi",
-                    "requireLast": true
+                'multiline': {
+                    'delimiter': 'semi',
+                    'requireLast': true
                 },
-                "singleline": {
-                    "delimiter": "semi",
-                    "requireLast": true
+                'singleline': {
+                    'delimiter': 'semi',
+                    'requireLast': true
                 }
             }
         ],
 
         // Import pravidla
-        "import/no-named-as-default": "off",
-        "import/no-named-as-default-member": "off"
+        'import/no-named-as-default': 'off',
+        'import/no-named-as-default-member': 'off'
     },
 
     settings: {

@@ -8,10 +8,13 @@
     "preview": "rsbuild preview",
     "lint": "eslint --config eslint.config.mjs 'src/**/*.{js,jsx,ts,tsx}'",
     "lint-fix": "eslint --config eslint.config.mjs 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "lint:styles": "stylelint 'src/**/*.{css,scss}'",
+    "lint:styles:fix": "stylelint 'src/**/*.{css,scss}' --fix",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "eslint --fix"
+    "src/**/*.{js,jsx,ts,tsx}": "eslint --fix",
+    "src/**/*.{css,scss}": "stylelint --fix"
   },
   "dependencies": {
     "react": "^18.3.1",
@@ -33,6 +36,9 @@
     "globals": "^15.9.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
+    "stylelint": "^16.9.0",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-scss": "^6.7.0",
     "typescript": "^5.5.2"
   }
 }
