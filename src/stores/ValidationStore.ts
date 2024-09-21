@@ -1,4 +1,4 @@
-import { action, makeObservable, observable, set } from 'mobx';
+import { action, makeObservable, observable, remove, set } from 'mobx';
 import { ValidationEnum, ValidationResult } from '@/dto/Common.ts';
 import { LoadingStore } from '@/stores/LoadingStore.ts';
 import { SafeParseReturnType, ZodIssue, ZodType } from 'zod';
@@ -15,7 +15,7 @@ export abstract class ValidationStore<T> extends LoadingStore {
                 resetValidationState: action,
                 setValidationErrors: action,
                 setValidationError: action,
-                // removeValidationState: action,
+                removeValidationState: action,
             },
         );
     }
@@ -46,7 +46,7 @@ export abstract class ValidationStore<T> extends LoadingStore {
 
     private setValidationErrors(errors: ZodIssue[]): void {
         errors.forEach(error => {
-            const key = error.path[0] as string;
+            const key = error.path[ 0 ] as string;
             this.setValidationError(key, error.message);
         });
     }
@@ -55,27 +55,39 @@ export abstract class ValidationStore<T> extends LoadingStore {
         set(this.validationState, dataIndex, {status: ValidationEnum.ERROR, message: message});
     }
 
-    // private removeValidationState(dataIndex: string): void {
-    //     if (this.validationState.get(dataIndex)) {
-    //         remove(this.validationState, dataIndex);
-    //     }
-    // }
-    //
-    // protected validateValueAtIndex(dataIndex: string, data: T): boolean {
-    //     const validationResult = this.doValidateValueAtIndex(dataIndex, data);
-    //
-    //     if (!validationResult.success) {
-    //         this.setValidationError(dataIndex, validationResult.error.errors[0].message);
-    //         return false;
-    //     }
-    //
-    //     this.removeValidationState(dataIndex);
-    //     return true;
-    // }
-    //
-    // protected doValidateValueAtIndex(dataIndex: string, data: T): SafeParseReturnType<T, any> {
-    //     //@ts-ignore
-    //     const value = data[dataIndex];
-    //     return (this.validationSchema as any).pick({[dataIndex]: true}).safeParse({[dataIndex]: value});
-    // }
+    protected setDataValueAtIndex(data: T, dataIndex: string, value: any): void {
+        const path = dataIndex.split('.');
+        let valueIndex = dataIndex;
+        let objInPath: any = data;
+
+        if (path.length > 1) {
+            valueIndex = path.pop()!;
+            objInPath = path.reduce((o: any, i: string): void => o[ i ], data as any);
+        }
+        set(objInPath, valueIndex, value);
+    }
+
+    private removeValidationState(dataIndex: string): void {
+        if (this.validationState.get(dataIndex)) {
+            remove(this.validationState, dataIndex);
+        }
+    }
+
+    protected validateValueAtIndex(dataIndex: string, data: T): boolean {
+        const validationResult = this.doValidateValueAtIndex(dataIndex, data);
+
+        if (!validationResult.success) {
+            this.setValidationError(dataIndex, validationResult.error.errors[ 0 ].message);
+            return false;
+        }
+
+        this.removeValidationState(dataIndex);
+        return true;
+    }
+
+    protected doValidateValueAtIndex(dataIndex: string, data: T): SafeParseReturnType<T, any> {
+        //@ts-ignore
+        const value = data[ dataIndex ];
+        return (this.validationSchema as any).pick({[ dataIndex ]: true}).safeParse({[ dataIndex ]: value});
+    }
 }
