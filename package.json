@@ -20,12 +20,14 @@
   "dependencies": {
     "@nextui-org/react": "^2.4.8",
     "framer-motion": "^11.5.6",
+    "i18next": "^23.15.1",
     "lodash": "^4.17.21",
     "luxon": "^3.5.0",
     "mobx": "^6.13.2",
     "mobx-react": "^9.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^15.0.2",
     "uuid": "^10.0.0",
     "zod": "^3.23.8"
   },
@@ -37,6 +39,7 @@
     "@types/luxon": "^3.4.2",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
+    "@types/react-i18next": "^8.1.0",
     "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.6.0",
     "@typescript-eslint/parser": "^8.6.0",
