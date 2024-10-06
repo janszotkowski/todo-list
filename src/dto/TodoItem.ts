@@ -3,8 +3,8 @@ import { LuxonDateSchema, Priority, Status } from './Common.ts';
 
 const TodoItemBaseSchema = z.object({
     id: z.string().uuid(),
-    title: z.string().min(1, {message: 'Title is required'}),
-    description: z.string().optional(),
+    title: z.string().min(1, {message: 'Title is required'}).max(255),
+    description: z.string().max(2000).optional(),
     completed: z.boolean(),
     dueDate: LuxonDateSchema.optional(),
     priority: z.nativeEnum(Priority),

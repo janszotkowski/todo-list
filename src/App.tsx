@@ -14,6 +14,19 @@ const App = (): React.ReactElement => {
         return <div>Loading...</div>;
     }
 
+    // React.useEffect(() => {
+    //     const init = async (): Promise<void> => {
+    //         const res = await databases.listDocuments(
+    //             import.meta.env.PUBLIC_DATABASE_ID,
+    //             import.meta.env.PUBLIC_COLLECTION_ID_TODOS
+    //         )
+    //
+    //         console.log(res);
+    //     };
+    //
+    //     init();
+    // }, []);
+
     const changeLanguage = (lng: string): void => {
         i18n.changeLanguage(lng);
         localStorage.setItem('language', lng);
