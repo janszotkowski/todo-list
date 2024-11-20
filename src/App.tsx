@@ -4,7 +4,6 @@ import { TodoItemInsertView } from '@/views';
 import { useTranslation } from 'react-i18next';
 import './i18n';
 import './styles/tailwind.scss';
-import './App.scss';
 
 const App = (): React.ReactElement => {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -34,7 +33,7 @@ const App = (): React.ReactElement => {
 
     return (
         <NextUIProvider>
-            <main className={'vMain dark text-foreground bg-background'}>
+            <main className={'w-screen h-screen dark text-foreground bg-background'}>
                 <h1>{t('welcome')}</h1>
                 <Button
                     color={'primary'}
