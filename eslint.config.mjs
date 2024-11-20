@@ -6,6 +6,7 @@ import typescriptEslintParser from '@typescript-eslint/parser';
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
+import interfaceToType from 'eslint-plugin-interface-to-type';
 
 export default {
     name: 'ESLint Config',
@@ -37,11 +38,13 @@ export default {
         '@typescript-eslint': typescriptEslintPlugin,
         'jsx-a11y': jsxA11yPlugin,
         '@stylistic': stylisticPlugin,
-        'import': importPlugin
+        'import': importPlugin,
+        'interface-to-type': interfaceToType
     },
 
     rules: {
         'no-duplicate-imports': 'error',
+        'interface-to-type/prefer-type-over-interface': 'error',
 
         // Pravidla pro TypeScript
         '@typescript-eslint/explicit-function-return-type': 'error',

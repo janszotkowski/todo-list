@@ -86,8 +86,7 @@ export abstract class ValidationStore<T> extends LoadingStore {
     }
 
     protected doValidateValueAtIndex(dataIndex: string, data: T): SafeParseReturnType<T, any> {
-        //@ts-ignore
-        const value = data[ dataIndex ];
+        const value = (data as Record<string, any>)[dataIndex];
         return (this.validationSchema as any).pick({[ dataIndex ]: true}).safeParse({[ dataIndex ]: value});
     }
 }
