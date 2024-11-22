@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { DateTime } from 'luxon';
+import { SVGProps } from 'react';
 
 export enum Status {
     NOT_STARTED,
@@ -42,3 +43,7 @@ export const LuxonDateSchema = z
     .string()
     .refine((val) => DateTime.fromISO(val).isValid, {message: 'Invalid date format'})
     .transform((val) => DateTime.fromISO(val).toUTC().toISO());
+
+export type IconSvgProps = SVGProps<SVGSVGElement> & Partial<{
+    size: number;
+}>;
