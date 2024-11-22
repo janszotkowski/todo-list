@@ -36,4 +36,9 @@ export abstract class ApiService<T> {
         const filteredData = data.filter((item: any) => item.id !== id);
         localStorage.setItem(this.storageKey, JSON.stringify(filteredData));
     }
+
+    public async deleteAll(): Promise<void> {
+        // Simulace DELETE ALL (vymazání všech dat)
+        localStorage.removeItem(this.storageKey);
+    }
 }
