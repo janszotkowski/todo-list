@@ -4,10 +4,13 @@ import { TodoItemListStore } from '@/stores';
 import { Button, useDisclosure } from '@nextui-org/react';
 import { TodoItemInsertView } from '@/views/TodoItemInsertView.tsx';
 import { TodoItem } from '@/dto/TodoItem.ts';
+import { useTranslation } from 'react-i18next';
+import { PlusIcon } from '@/components';
 
 const TodoItemListView: React.FC = observer((): React.ReactElement => {
     const store = React.useRef(new TodoItemListStore()).current;
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+    const {t} = useTranslation();
 
     React.useEffect(() => {
         store.loadData();
@@ -34,8 +37,9 @@ const TodoItemListView: React.FC = observer((): React.ReactElement => {
             <Button
                 color={'primary'}
                 onClick={onOpen}
+                endContent={<PlusIcon/>}
             >
-                Insert
+                {t('Add.new')}
             </Button>
 
             <TodoItemInsertView

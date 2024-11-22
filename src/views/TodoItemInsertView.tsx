@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import { TodoItemInsertStore } from '@/stores';
 import { observer } from 'mobx-react';
+import { useTranslation } from 'react-i18next';
 
 type TodoItemInsertViewProps = {
     isOpen: boolean;
@@ -10,6 +11,7 @@ type TodoItemInsertViewProps = {
 
 const TodoItemInsertView: React.FC<TodoItemInsertViewProps> = observer((props: TodoItemInsertViewProps): React.ReactElement => {
     const store = React.useRef(new TodoItemInsertStore()).current;
+    const {t} = useTranslation();
     const {data, validationState} = store;
 
     const onInsert = async (): Promise<void> => {
@@ -56,7 +58,7 @@ const TodoItemInsertView: React.FC<TodoItemInsertViewProps> = observer((props: T
                         color={'success'}
                         onPress={onInsert}
                     >
-                        Vytvořit
+                        {t('Save')}
                     </Button>
                 </ModalFooter>
             </ModalContent>
