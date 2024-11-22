@@ -2,7 +2,7 @@ import { ValidationStore } from '@/stores/ValidationStore.ts';
 import { action, makeObservable, observable } from 'mobx';
 import { debounce, DebouncedFunc } from 'lodash';
 import { LoadingState } from '@/dto/Common.ts';
-import { success } from '@/components/toast/toast.ts';
+import { error, success } from '@/components/toast/toast.ts';
 import { ApiService } from '@/api';
 
 export abstract class InsertStore<I> extends ValidationStore<I> {
@@ -49,7 +49,7 @@ export abstract class InsertStore<I> extends ValidationStore<I> {
             return true;
         } catch {
             this.setState(LoadingState.FAILURE);
-            success('Fail!');
+            error('Fail!');
             return false;
         }
     }
