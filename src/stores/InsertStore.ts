@@ -3,6 +3,7 @@ import { action, makeObservable, observable } from 'mobx';
 import { debounce, DebouncedFunc } from 'lodash';
 import { LoadingState } from '@/dto/Common.ts';
 import { ApiService } from '@/api/ApiService.ts';
+import { success } from '@/components/toast/toast.ts';
 
 export abstract class InsertStore<I> extends ValidationStore<I> {
     public data: I = this.getInitData();
@@ -44,9 +45,11 @@ export abstract class InsertStore<I> extends ValidationStore<I> {
         try {
             await this.getService().create(this.data);
             this.setState(LoadingState.INSERTED);
+            success('🦄 Wow so easy!');
             return true;
         } catch {
             this.setState(LoadingState.FAILURE);
+            success('Fail!');
             return false;
         }
     }

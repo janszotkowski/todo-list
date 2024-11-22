@@ -2,8 +2,10 @@ import * as React from 'react';
 import { NextUIProvider } from '@nextui-org/react';
 import { TodoItemListView } from '@/views';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer } from 'react-toastify';
 import './i18n';
 import './styles/tailwind.scss';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const App = (): React.ReactElement => {
     const {t, i18n} = useTranslation();
@@ -32,6 +34,7 @@ const App = (): React.ReactElement => {
 
     return (
         <NextUIProvider>
+            <ToastContainer />
             <main className={'w-screen h-screen dark text-foreground bg-background'}>
                 <h1>{t('welcome')}</h1>
                 <button onClick={() => changeLanguage('en')}>English</button>
