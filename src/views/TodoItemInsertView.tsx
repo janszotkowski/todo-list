@@ -13,13 +13,26 @@ const TodoItemInsertView: React.FC<TodoItemInsertViewProps> = observer((props: T
     const {data, validationState} = store;
 
     const onInsert = async (): Promise<void> => {
-        await store.onInsert();
+        const isValid = await store.validate();
+
+        if (isValid) {
+            await store.onInsert();
+            store.reset();
+            props.onOpenChange();
+        }
+    };
+
+    const handleOpenChange = (): void => {
+        if (!props.isOpen) {
+            store.reset();
+        }
+        props.onOpenChange();
     };
 
     return (
         <Modal
             isOpen={props.isOpen}
-            onOpenChange={props.onOpenChange}
+            onOpenChange={handleOpenChange}
             placement={'top-center'}
             className={'dark'}
             isDismissable={false}
