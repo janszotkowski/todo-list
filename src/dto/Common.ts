@@ -3,16 +3,16 @@ import { DateTime } from 'luxon';
 import { SVGProps } from 'react';
 
 export enum Status {
-    NOT_STARTED,
-    IN_PROGRESS,
-    COMPLETED,
-    DELETED,
+    NOT_STARTED = 'NOT_STARTED',
+    IN_PROGRESS = 'IN_PROGRESS',
+    COMPLETED = 'COMPLETED',
+    DELETED = 'DELETED',
 }
 
 export enum Priority {
-    LOW,
-    MEDIUM,
-    HIGH,
+    LOW = 'LOW',
+    MEDIUM = 'MEDIUM',
+    HIGH = 'HIGH',
 }
 
 export enum LoadingState {
@@ -46,4 +46,11 @@ export const LuxonDateSchema = z
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & Partial<{
     size: number;
+}>;
+
+export type ColumnsData = {
+    title: string;
+    uid: string;
+} & Partial<{
+    sortable: boolean;
 }>;

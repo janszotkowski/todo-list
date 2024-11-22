@@ -2,5 +2,6 @@
   "welcome": "Vítejte v mém projektu",
   "description": "Toto je projekt s podporou lokalizace.",
   "Add.new": "Vytvořit",
-  "Save": "Uložit"
+  "Save": "Uložit",
+  "Title": "Název"
 }

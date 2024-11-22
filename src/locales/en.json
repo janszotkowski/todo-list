@@ -2,5 +2,6 @@
   "welcome": "Welcome to my project",
   "description": "This is a project with localization support.",
   "Add.new": "Add new",
-  "Save": "Save"
+  "Save": "Save",
+  "Title": "Title"
 }

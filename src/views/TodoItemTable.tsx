@@ -1,36 +1,37 @@
 import * as React from 'react';
-import { getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from '@nextui-org/react';
 import { TodoItem } from '@/dto/TodoItem.ts';
+import { DataTable } from '@/components';
+import { ColumnsData } from '@/dto/Common.ts';
+import { useTranslation } from 'react-i18next';
 
 type TodoItemTableProps = {
     data: TodoItem[];
 };
 
-const TodoItemTable: React.FC<TodoItemTableProps> = (props: TodoItemTableProps): React.ReactElement => {
+const TodoItemTable: React.FC<TodoItemTableProps> = React.memo((props: TodoItemTableProps): React.ReactElement => {
+    const {t} = useTranslation();
+
+    const columns: ColumnsData[] = React.useMemo(() => {
+        return [
+            {
+                title: t('Title'),
+                uid: 'title',
+                sortable: true,
+            },
+            {
+                title: t('Status'),
+                uid: 'status',
+            },
+        ];
+    }, [t]);
+
     return (
-        <div>
-            <Table
-                isHeaderSticky
-                classNames={{
-                    base: 'max-h-[520px] overflow-scroll m-auto w-1/2',
-                    table: 'min-h-[400px]',
-                }}
-            >
-                <TableHeader>
-                    <TableColumn key={'title'}>Title</TableColumn>
-                </TableHeader>
-                <TableBody items={props.data}>
-                    {(item: TodoItem) => (
-                        <TableRow key={item.id}>
-                            {(columnKey) => (
-                                <TableCell>{getKeyValue(item, columnKey)}</TableCell>
-                            )}
-                        </TableRow>
-                    )}
-                </TableBody>
-            </Table>
-        </div>
+        <DataTable
+            data={props.data}
+            columns={columns}
+            enabledSelection
+        />
     );
-};
+});
 
 export { TodoItemTable };
