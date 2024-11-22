@@ -4,8 +4,7 @@ import { ZodType } from 'zod';
 import { DateTime } from 'luxon';
 import { Priority, Status } from '@/dto/Common.ts';
 import { v4 as uuidv4 } from 'uuid';
-import { ApiService } from '@/api/ApiService.ts';
-import { todoService } from '@/api/TodoService.ts';
+import { ApiService, todoService } from '@/api';
 
 export class TodoItemInsertStore extends InsertStore<TodoInsertItem> {
     public constructor() {
