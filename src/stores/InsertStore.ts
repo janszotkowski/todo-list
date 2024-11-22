@@ -1,7 +1,8 @@
 import { ValidationStore } from '@/stores/ValidationStore.ts';
-import { makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable } from 'mobx';
 import { debounce, DebouncedFunc } from 'lodash';
 import { LoadingState } from '@/dto/Common.ts';
+import { ApiService } from '@/api/ApiService.ts';
 
 export abstract class InsertStore<I> extends ValidationStore<I> {
     public data: I = this.getInitData();
@@ -12,12 +13,15 @@ export abstract class InsertStore<I> extends ValidationStore<I> {
 
         makeObservable<InsertStore<I>, any>(this, {
             data: observable,
+            reset: action,
         });
 
         this.debounceValidation = debounce(this.validateValueAtIndex, 300);
     }
 
     protected abstract getInitData(): I;
+
+    protected abstract getService(): ApiService<I>;
 
     public onInputChange(dataIndex: string, value: any): void {
         this.setDataValueAtIndex(this.data, dataIndex, value);
@@ -38,11 +42,17 @@ export abstract class InsertStore<I> extends ValidationStore<I> {
         this.setState(LoadingState.INSERTING);
 
         try {
+            await this.getService().create(this.data);
             this.setState(LoadingState.INSERTED);
             return true;
         } catch {
             this.setState(LoadingState.FAILURE);
             return false;
         }
+    }
+
+    public reset(): void {
+        this.data = this.getInitData();
+        this.validationState.clear();
     }
 }
