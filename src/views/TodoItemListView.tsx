@@ -3,9 +3,9 @@ import { observer } from 'mobx-react';
 import { TodoItemListStore } from '@/stores';
 import { Button, useDisclosure } from '@nextui-org/react';
 import { TodoItemInsertView } from '@/views/TodoItemInsertView.tsx';
-import { TodoItem } from '@/dto/TodoItem.ts';
 import { useTranslation } from 'react-i18next';
 import { PlusIcon } from '@/components';
+import { TodoItemTable } from '@/views/TodoItemTable.tsx';
 
 const TodoItemListView: React.FC = observer((): React.ReactElement => {
     const store = React.useRef(new TodoItemListStore()).current;
@@ -28,12 +28,6 @@ const TodoItemListView: React.FC = observer((): React.ReactElement => {
                 List
             </h1>
 
-            {
-                store.data.map((it: TodoItem) => (
-                    <div key={it.id}>{it.title}</div>
-                ))
-            }
-
             <Button
                 color={'primary'}
                 onClick={onOpen}
@@ -46,6 +40,8 @@ const TodoItemListView: React.FC = observer((): React.ReactElement => {
                 isOpen={isOpen}
                 onOpenChange={onCloseInsert}
             />
+
+            <TodoItemTable data={store.data} />
         </div>
     );
 });
