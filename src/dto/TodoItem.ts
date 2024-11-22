@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { LuxonDateSchema, Priority, Status } from './Common.ts';
 
-const TodoItemBaseSchema = z.object({
+export const TodoItemBaseSchema = z.object({
     id: z.string().uuid(),
     title: z.string().min(1, {message: 'Title is required'}).max(255),
     description: z.string().max(2000).optional(),
