@@ -16,10 +16,10 @@ const TodoItemListView: React.FC = observer((): React.ReactElement => {
         store.loadData();
     }, [store]);
 
-    const onCloseInsert = (): void => {
+    const onCloseInsert = React.useCallback((): void => {
         onOpenChange();
         store.loadData();
-    };
+    }, [onOpenChange, store]);
 
     return (
         <div>

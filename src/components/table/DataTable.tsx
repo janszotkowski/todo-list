@@ -22,7 +22,7 @@ const DataTable: React.FC<DataTableProps<unknown>> = <T, >(props: DataTableProps
                 {(column) => (
                     <TableColumn
                         key={column.uid}
-                        align={column.uid === 'actions' ? 'center' : 'start'}
+                        align={column.align}
                         allowsSorting={column.sortable}
                     >
                         {column.title}

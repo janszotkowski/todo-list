@@ -53,4 +53,5 @@ export type ColumnsData = {
     uid: string;
 } & Partial<{
     sortable: boolean;
+    align: 'start' | 'center' | 'end';
 }>;
