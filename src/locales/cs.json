@@ -3,5 +3,8 @@
   "description": "Toto je projekt s podporou lokalizace.",
   "Add.new": "Vytvořit",
   "Save": "Uložit",
-  "Title": "Název"
+  "Title": "Název",
+  "Priority.LOW": "Nízká",
+  "Priority.MEDIUM": "Střední",
+  "Priority.HIGH": "Vysoká"
 }

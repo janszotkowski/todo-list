@@ -3,5 +3,8 @@
   "description": "This is a project with localization support.",
   "Add.new": "Add new",
   "Save": "Save",
-  "Title": "Title"
+  "Title": "Title",
+  "Priority.LOW": "Low",
+  "Priority.MEDIUM": "Medium",
+  "Priority.HIGH": "High"
 }

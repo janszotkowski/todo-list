@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconSvgProps } from '@/dto/Common.ts';
 
-const PlusIcon = ({size = 24, width, height, ...props}: IconSvgProps): React.ReactElement => (
+const PlusIcon: React.FC<IconSvgProps> = ({size = 24, width, height, ...props}): React.ReactElement => (
     <svg
         aria-hidden={'true'}
         fill={'none'}

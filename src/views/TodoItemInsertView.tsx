@@ -1,8 +1,21 @@
 import * as React from 'react';
-import { Button, Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
+import {
+    Button,
+    DatePicker,
+    Input,
+    Modal,
+    ModalBody,
+    ModalContent,
+    ModalFooter,
+    ModalHeader,
+    Select, SelectedItems,
+    SelectItem,
+} from '@nextui-org/react';
 import { TodoItemInsertStore } from '@/stores';
 import { observer } from 'mobx-react';
 import { useTranslation } from 'react-i18next';
+import { Priority } from '@/dto/Common.ts';
+import { ChevronHighIcon, ChevronLowIcon, ChevronMediumIcon } from '@/components';
 
 type TodoItemInsertViewProps = {
     isOpen: boolean;
@@ -25,9 +38,7 @@ const TodoItemInsertView: React.FC<TodoItemInsertViewProps> = observer((props: T
     };
 
     const handleOpenChange = (): void => {
-        if (!props.isOpen) {
-            store.reset();
-        }
+        store.reset();
         props.onOpenChange();
     };
 
@@ -41,7 +52,7 @@ const TodoItemInsertView: React.FC<TodoItemInsertViewProps> = observer((props: T
             size={'xl'}
         >
             <ModalContent>
-                <ModalHeader className={'text-white flex flex-col gap-1'}>Vytvořit úkol</ModalHeader>
+                <ModalHeader className={'text-white flex flex-col gap-6'}>Vytvořit úkol</ModalHeader>
                 <ModalBody>
                     <Input
                         label={'Název'}
@@ -52,6 +63,54 @@ const TodoItemInsertView: React.FC<TodoItemInsertViewProps> = observer((props: T
                         errorMessage={validationState.get('title')?.message}
                         autoFocus
                     />
+
+                    <div className={'flex gap-3'}>
+                        <DatePicker
+                            className={'max-w-[284px]'}
+                            label={'Due date'}
+                            onChange={() => {}}
+                            size={'sm'}
+                        />
+
+                        <Select<any>
+                            size={'sm'}
+                            className={'max-w-xs'}
+                            label={'Priority'}
+                            isInvalid={!!validationState.get('priority')}
+                            errorMessage={validationState.get('priority')?.message}
+                            selectedKeys={[data.priority]}
+                            onChange={(event: React.ChangeEvent<HTMLSelectElement>) => store.onInputChange('priority', event.target.value)}
+                            renderValue={(items: SelectedItems<Priority>): React.ReactNode => {
+                                return (
+                                    <>
+                                        {
+                                            items.map(it => (
+                                                <div className={'flex gap-2 items-center'}>
+                                                    {it.key === Priority.LOW && <ChevronLowIcon/>}
+                                                    {it.key === Priority.MEDIUM && <ChevronMediumIcon/>}
+                                                    {it.key === Priority.HIGH && <ChevronHighIcon/>}
+                                                    {t(`Priority.${it.key}`)}
+                                                </div>
+                                            ))
+                                        }
+                                    </>
+                                );
+                            }}
+                            required
+                        >
+                            {Object.keys(Priority).map((p) => (
+                                <SelectItem key={p}>
+                                    <div className={'flex gap-2 items-center'}>
+                                        {p === Priority.LOW && <ChevronLowIcon/>}
+                                        {p === Priority.MEDIUM && <ChevronMediumIcon/>}
+                                        {p === Priority.HIGH && <ChevronHighIcon/>}
+                                        {t(`Priority.${p}`)}
+                                    </div>
+                                </SelectItem>
+                            ))}
+                        </Select>
+                    </div>
+
                 </ModalBody>
                 <ModalFooter>
                     <Button

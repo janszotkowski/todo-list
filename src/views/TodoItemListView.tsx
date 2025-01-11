@@ -30,7 +30,7 @@ const TodoItemListView: React.FC = observer((): React.ReactElement => {
 
             <Button
                 color={'primary'}
-                onClick={onOpen}
+                onPress={onOpen}
                 endContent={<PlusIcon/>}
             >
                 {t('Add.new')}
