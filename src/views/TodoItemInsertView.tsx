@@ -38,6 +38,7 @@ const TodoItemInsertView: React.FC<TodoItemInsertViewProps> = observer((props: T
     };
 
     const handleOpenChange = (): void => {
+        console.log('xxx');
         store.reset();
         props.onOpenChange();
     };
@@ -85,7 +86,7 @@ const TodoItemInsertView: React.FC<TodoItemInsertViewProps> = observer((props: T
                                     <>
                                         {
                                             items.map(it => (
-                                                <div className={'flex gap-2 items-center'}>
+                                                <div className={'flex gap-2 items-center'} key={it.key}>
                                                     {it.key === Priority.LOW && <ChevronLowIcon/>}
                                                     {it.key === Priority.MEDIUM && <ChevronMediumIcon/>}
                                                     {it.key === Priority.HIGH && <ChevronHighIcon/>}
